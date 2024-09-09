@@ -390,6 +390,16 @@ class WebViewHostApiImpl extends WebViewHostApi {
   Future<void> setBackgroundColorFromInstance(WebView instance, int color) {
     return setBackgroundColor(instanceManager.getIdentifier(instance)!, color);
   }
+
+  /// Helper method to convert instances ids to objects.
+  Future<void> focusWebviewFromInstance(WebView instance) {
+    return focusWebview(instanceManager.getIdentifier(instance)!);
+  }
+
+  /// Helper method to convert instances ids to objects.
+  Future<void> hideKeyboardWebviewFromInstance(WebView instance) {
+    return hideKeyboardWebview(instanceManager.getIdentifier(instance)!);
+  }
 }
 
 /// Flutter API implementation for [WebView].

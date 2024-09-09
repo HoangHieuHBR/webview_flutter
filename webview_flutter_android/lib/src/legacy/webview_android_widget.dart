@@ -442,6 +442,12 @@ class WebViewAndroidPlatformController extends WebViewPlatformController {
   Future<void> scrollBy(int x, int y) => webView.scrollBy(x, y);
 
   @override
+  Future<void> focusWebview() => webView.focusWebview();
+
+  @override
+  Future<void> hideKeyboardWebview() => webView.hideKeyboardWebview();
+
+  @override
   Future<int> getScrollX() => webView.getScrollX();
 
   @override

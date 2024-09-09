@@ -209,4 +209,14 @@ class WebWebViewPlatformController implements WebViewPlatformController {
   Future<void> loadFlutterAsset(String key) {
     throw UnimplementedError();
   }
+  
+  @override
+  Future<void> focusWebview() {
+    throw UnimplementedError();
+  }
+  
+  @override
+  Future<void> hideKeyboardWebview() {
+    throw UnimplementedError();
+  }
 }

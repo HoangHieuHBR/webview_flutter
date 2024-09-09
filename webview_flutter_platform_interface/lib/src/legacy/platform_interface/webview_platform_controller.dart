@@ -251,4 +251,14 @@ abstract class WebViewPlatformController {
     throw UnimplementedError(
         'WebView getScrollY is not implemented on the current platform');
   }
+
+  Future<void> focusWebview() {
+    throw UnimplementedError(
+        'WebView focusWebview is not implemented on the current platform');
+  }
+
+  Future<void> hideKeyboardWebview() {
+    throw UnimplementedError(
+        'WebView hideKeyboardWebview is not implemented on the current platform');
+  }
 }

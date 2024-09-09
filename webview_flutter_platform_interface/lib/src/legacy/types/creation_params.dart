@@ -22,6 +22,7 @@ class CreationParams {
     this.autoMediaPlaybackPolicy =
         AutoMediaPlaybackPolicy.require_user_action_for_all_media_types,
     this.backgroundColor,
+    this.ignoreKeyboardListener = false,
     this.cookies = const <WebViewCookie>[],
   });
 
@@ -61,11 +62,13 @@ class CreationParams {
   /// When null the platform's webview default background color is used.
   final Color? backgroundColor;
 
+  final bool ignoreKeyboardListener;
+
   /// The initial set of cookies to set before the webview does its first load.
   final List<WebViewCookie> cookies;
 
   @override
   String toString() {
-    return 'CreationParams(initialUrl: $initialUrl, settings: $webSettings, javascriptChannelNames: $javascriptChannelNames, UserAgent: $userAgent, backgroundColor: $backgroundColor, cookies: $cookies)';
+    return 'CreationParams(initialUrl: $initialUrl, settings: $webSettings, javascriptChannelNames: $javascriptChannelNames, UserAgent: $userAgent, backgroundColor: $backgroundColor, ignoreKeyboardListener: $ignoreKeyboardListener, cookies: $cookies)';
   }
 }

@@ -8,11 +8,15 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.hardware.display.DisplayManager;
 import android.os.Build;
+import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewParent;
+import android.view.MotionEvent;
+import android.view.inputMethod.InputMethodManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.webkit.CookieManager;
 import androidx.annotation.ChecksSdkIntAtLeast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -237,6 +241,10 @@ public class WebViewHostApiImpl implements WebViewHostApi {
     final WebView webView = webViewProxy.createWebView(context, binaryMessenger, instanceManager);
 
     displayListenerProxy.onPostWebViewInitialization(displayManager);
+
+    /// allow cookie for local html
+    CookieManager.getInstance().setAcceptThirdPartyCookies(webView, true);
+
     instanceManager.addDartCreatedInstance(webView, instanceId);
   }
 
@@ -420,6 +428,27 @@ public class WebViewHostApiImpl implements WebViewHostApi {
   public void setBackgroundColor(@NonNull Long instanceId, @NonNull Long color) {
     final WebView webView = Objects.requireNonNull(instanceManager.getInstance(instanceId));
     webView.setBackgroundColor(color.intValue());
+  }
+
+  @Override
+  public void focusWebview(@NonNull Long instanceId) {
+    final WebView webView = Objects.requireNonNull(instanceManager.getInstance(instanceId));
+    webView.post(new Runnable() {
+      @Override
+      public void run() {
+        webView.dispatchTouchEvent(MotionEvent.obtain(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), MotionEvent.ACTION_DOWN, 0, 0, 0));
+        webView.dispatchTouchEvent(MotionEvent.obtain(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), MotionEvent.ACTION_UP, 0, 0, 0));
+      }
+    })
+  }
+
+  @Override
+  public void hideKeyboardWebview(@NonNull Long instanceId) {
+    final WebView webView = Objects.requireNonNull(instanceManager.getInstance(instanceId));
+    InputMethodManager imm = (InputMethodManager) webView.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+    if (imm != null) {
+      imm.hideSoftInputFromWindow(webView.getWindowToken(), 0);
+    }
   }
 
   /** Maintains instances used to communicate with the corresponding WebView Dart object. */

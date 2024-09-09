@@ -411,6 +411,12 @@ class WebKitWebViewPlatformController extends WebViewPlatformController {
   }
 
   @override
+  Future<void> focusWebview() async {}
+
+  @override
+  Future<void> hideKeyboardWebview() async {}
+
+  @override
   Future<int> getScrollX() async {
     final WKWebView webView = this.webView;
     if (webView is WKWebViewIOS) {

@@ -367,6 +367,14 @@ class WebView extends View {
     return api.scrollByFromInstance(this, x, y);
   }
 
+  Future<void> focusWebview() {
+    return api.focusWebviewFromInstance(this);
+  }
+
+  Future<void> hideKeyboardWebview() {
+    return api.hideKeyboardWebviewFromInstance(this);
+  }
+
   /// Return the scrolled left position of this view.
   ///
   /// This is the left edge of the displayed part of your view. You do not

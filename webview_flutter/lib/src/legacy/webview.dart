@@ -98,6 +98,7 @@ class WebView extends StatefulWidget {
         AutoMediaPlaybackPolicy.require_user_action_for_all_media_types,
     this.allowsInlineMediaPlayback = false,
     this.backgroundColor,
+    this.ignoreKeyboardListener = false,
   });
 
   static WebViewPlatform? _platform;
@@ -295,6 +296,8 @@ class WebView extends StatefulWidget {
   /// default [backgroundColor] is `null`.
   final Color? backgroundColor;
 
+  final bool ignoreKeyboardListener;
+
   @override
   State<StatefulWidget> createState() => _WebViewState();
 }
@@ -367,6 +370,7 @@ CreationParams _creationParamsFromWidget(WebView widget) {
     userAgent: widget.userAgent,
     autoMediaPlaybackPolicy: widget.initialMediaPlaybackPolicy,
     backgroundColor: widget.backgroundColor,
+    ignoreKeyboardListener: widget.ignoreKeyboardListener,
     cookies: widget.initialCookies,
   );
 }
@@ -771,6 +775,18 @@ class WebViewController {
   /// Scroll position is measured from left.
   Future<int> getScrollX() {
     return _webViewPlatformController.getScrollX();
+  }
+
+  /// focus webview
+  ///
+  Future<void> focusWebView() {
+    return _webViewPlatformController.focusWebview();
+  }
+
+  /// hide keyboard webview
+  ///
+  Future<void> hideKeyboardWebview() {
+    return _webViewPlatformController.hideKeyboardWebview();
   }
 
   /// Return the vertical scroll position, in WebView pixels, of this view.
