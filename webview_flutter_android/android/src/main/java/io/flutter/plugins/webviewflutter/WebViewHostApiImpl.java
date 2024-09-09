@@ -12,7 +12,7 @@ import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewParent;
 import android.view.MotionEvent;
-import android.view.inputMethod.InputMethodManager;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -439,7 +439,8 @@ public class WebViewHostApiImpl implements WebViewHostApi {
         webView.dispatchTouchEvent(MotionEvent.obtain(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), MotionEvent.ACTION_DOWN, 0, 0, 0));
         webView.dispatchTouchEvent(MotionEvent.obtain(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), MotionEvent.ACTION_UP, 0, 0, 0));
       }
-    })
+    });
+    // webView.requestFocus(View.FOCUS_DOWN);
   }
 
   @Override

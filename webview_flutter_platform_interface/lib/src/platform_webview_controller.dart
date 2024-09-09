@@ -249,6 +249,18 @@ abstract class PlatformWebViewController extends PlatformInterface {
         'setBackgroundColor is not implemented on the current platform');
   }
 
+  /// Focuses the webview.
+  Future<void> focusWebview() {
+    throw UnimplementedError(
+        'focusWebview is not implemented on the current platform');
+  }
+
+  /// Unfocuses the webview.
+  Future<void> hideKeyboardWebview() {
+    throw UnimplementedError(
+        'hideKeyboardWebview is not implemented on the current platform');
+  }
+
   /// Sets the JavaScript execution mode to be used by the webview.
   Future<void> setJavaScriptMode(JavaScriptMode javaScriptMode) {
     throw UnimplementedError(

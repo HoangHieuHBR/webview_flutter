@@ -562,6 +562,12 @@ class AndroidWebViewController extends PlatformWebViewController {
       _webView.setBackgroundColor(color);
 
   @override
+  Future<void> focusWebview() => _webView.focusWebview();
+
+  @override
+  Future<void> hideKeyboardWebview() => _webView.hideKeyboardWebview();
+
+  @override
   Future<void> setJavaScriptMode(JavaScriptMode javaScriptMode) =>
       _webView.settings
           .setJavaScriptEnabled(javaScriptMode == JavaScriptMode.unrestricted);

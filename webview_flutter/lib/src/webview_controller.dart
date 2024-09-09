@@ -344,6 +344,16 @@ class WebViewController {
     return platform.setBackgroundColor(color);
   }
 
+  /// Requests focus for this view.
+  Future<void> requestFocus() {
+    return platform.focusWebview();
+  }
+
+  /// Clears focus from this view.
+  Future<void> clearFocus() {
+    return platform.hideKeyboardWebview();
+  }
+
   /// Sets the JavaScript execution mode to be used by the WebView.
   Future<void> setJavaScriptMode(JavaScriptMode javaScriptMode) {
     return platform.setJavaScriptMode(javaScriptMode);
