@@ -1111,6 +1111,11 @@ class WKWebViewHostApiImpl extends WKWebViewHostApi {
     return reload(instanceManager.getIdentifier(instance)!);
   }
 
+  // Calls [focusWebview] with the ids of the provided object instances.
+  Future<void> focusWebviewForInstances(WKWebView instance) {
+    return focusWebview(instanceManager.getIdentifier(instance)!);
+  }
+
   /// Calls [getUrl] with the ids of the provided object instances.
   Future<String?> getUrlForInstances(WKWebView instance) {
     return getUrl(instanceManager.getIdentifier(instance)!);

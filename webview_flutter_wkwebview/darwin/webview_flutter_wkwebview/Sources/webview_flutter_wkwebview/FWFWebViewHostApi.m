@@ -4,6 +4,7 @@
 
 #import "./include/webview_flutter_wkwebview/FWFWebViewHostApi.h"
 #import "./include/webview_flutter_wkwebview/FWFDataConverters.h"
+#import "./include/webview_flutter_wkwebview/WKWebView+WebViewInjection.h"
 
 @implementation FWFAssetManager
 - (NSString *)lookupKeyForAsset:(NSString *)asset {
@@ -17,6 +18,10 @@
               binaryMessenger:(id<FlutterBinaryMessenger>)binaryMessenger
               instanceManager:(FWFInstanceManager *)instanceManager {
   self = [self initWithFrame:frame configuration:configuration];
+
+  [WKWebView allowDisplayingKeyboardWithoutUserAction];
+  [WKWebView removeInputAccessoryViewFromWKWebView:self];
+
   if (self) {
     _objectApi = [[FWFObjectFlutterApiImpl alloc] initWithBinaryMessenger:binaryMessenger
                                                           instanceManager:instanceManager];
@@ -314,5 +319,13 @@
                                       error:
                                           (FlutterError *_Nullable __autoreleasing *_Nonnull)error {
   return [[self webViewForIdentifier:identifier] customUserAgent];
+}
+
+- (void)focusWebViewWithIdentifier:(NSInteger)identifier {
+  [[self webViewForIdentifier:identifier] allowDisplayingKeyboardWithoutUserAction];
+}
+
+- (void)hideKeyboardWebViewWithIdentifier:(NSInteger)identifier {
+  [[self webViewForIdentifier:identifier] removeInputAccessoryViewFromWKWebView];
 }
 @end

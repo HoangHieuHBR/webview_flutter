@@ -808,6 +808,12 @@ abstract class WKWebViewHostApi {
 
   @ObjCSelector('customUserAgentForWebViewWithIdentifier:')
   String? getCustomUserAgent(int identifier);
+
+  @ObjCSelector('focusWebViewWithIdentifier:')
+  void focusWebview(int identifier);
+
+  @ObjCSelector('hideKeyboardWebViewWithIdentifier:')
+  void hideKeyboardWebview(int identifier);
 }
 
 /// Mirror of WKUIDelegate.

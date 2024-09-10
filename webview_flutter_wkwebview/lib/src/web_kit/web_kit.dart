@@ -1154,6 +1154,11 @@ abstract class WKWebView extends NSObject {
     return _webViewApi.reloadForInstances(this);
   }
 
+  /// Request focus on the web view.
+  Future<void> requestFocus() {
+    return _webViewApi.focusWebviewForInstances(this);
+  }
+
   /// The page title.
   ///
   /// Represents [WKWebView.title](https://developer.apple.com/documentation/webkit/wkwebview/1415015-title?language=objc).

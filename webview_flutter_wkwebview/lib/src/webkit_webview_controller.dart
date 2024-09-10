@@ -438,6 +438,9 @@ class WebKitWebViewController extends PlatformWebViewController {
   Future<void> reload() => _webView.reload();
 
   @override
+  Future<void> focusWebview() => _webView.requestFocus();
+
+  @override
   Future<void> clearCache() {
     return _webView.configuration.websiteDataStore.removeDataOfTypes(
       <WKWebsiteDataType>{

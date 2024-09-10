@@ -344,6 +344,9 @@ class WebKitWebViewPlatformController extends WebViewPlatformController {
   Future<void> reload() => webView.reload();
 
   @override
+  Future<void> focusWebview() => webView.requestFocus();
+
+  @override
   Future<String> evaluateJavascript(String javascript) async {
     final Object? result = await webView.evaluateJavaScript(javascript);
     return _asObjectiveCString(result);
@@ -410,11 +413,11 @@ class WebKitWebViewPlatformController extends WebViewPlatformController {
     }
   }
 
-  @override
-  Future<void> focusWebview() async {}
+  // @override
+  // Future<void> focusWebview() async {}
 
-  @override
-  Future<void> hideKeyboardWebview() async {}
+  // @override
+  // Future<void> hideKeyboardWebview() async {}
 
   @override
   Future<int> getScrollX() async {
