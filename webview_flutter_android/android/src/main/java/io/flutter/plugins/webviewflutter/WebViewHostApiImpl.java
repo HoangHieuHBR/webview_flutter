@@ -433,14 +433,23 @@ public class WebViewHostApiImpl implements WebViewHostApi {
   @Override
   public void focusWebview(@NonNull Long instanceId) {
     final WebView webView = Objects.requireNonNull(instanceManager.getInstance(instanceId));
-    webView.post(new Runnable() {
-      @Override
-      public void run() {
-        webView.dispatchTouchEvent(MotionEvent.obtain(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), MotionEvent.ACTION_DOWN, 0, 0, 0));
-        webView.dispatchTouchEvent(MotionEvent.obtain(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), MotionEvent.ACTION_UP, 0, 0, 0));
-      }
-    });
-    // webView.requestFocus(View.FOCUS_DOWN);
+    // webView.post(new Runnable() {
+    //   @Override
+    //   public void run() {
+    //     webView.dispatchTouchEvent(MotionEvent.obtain(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), MotionEvent.ACTION_DOWN, 0, 0, 0));
+    //     webView.dispatchTouchEvent(MotionEvent.obtain(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), MotionEvent.ACTION_UP, 0, 0, 0));
+    //   }
+    // });
+    webView.requestFocus(View.FOCUS_UP);
+    showKeyboardWebview(instanceId);
+  }
+
+  public void showKeyboardWebview(@NonNull Long instanceId) {
+    final WebView webView = Objects.requireNonNull(instanceManager.getInstance(instanceId));
+    InputMethodManager imm = (InputMethodManager) webView.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+    if (imm != null) {
+      imm.showSoftInputFromInputMethod(webView.getWindowToken(), InputMethodManager.SHOW_FORCED);
+    }
   }
 
   @Override
